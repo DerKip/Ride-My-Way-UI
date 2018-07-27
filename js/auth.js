@@ -11,6 +11,7 @@ function signupWithoutCar(event){
     let confirmPassword = document.getElementById('confirmPassword').value;
 
     let error = document.getElementById('error');
+    let success = document.getElementById('message');
     let status = '';
     
     fetch('http://127.0.0.1:5000/api/v2/auth/signup', {
@@ -29,24 +30,21 @@ function signupWithoutCar(event){
     }).then((res) => {
         status = res.status;
         return res.json();
-    })
-    
+    })  
     .then((data) => {
         if (status >= 400){
             error.style.display='block';
-            document.getElementById('error').innerHTML = data["error"];
-            
+            document.getElementById('error').innerHTML = data["error"];     
         }
         if (status == 201 ){
-            window.location = 'index.html'
-            success.style.display= 'block'
-            document.getElementById('message').innerHTML = data['message']
-            
-        }
-        
+            window.location = 'index.html';
+            success.style.display= 'block';
+            document.getElementById('message').innerHTML = data['message'];   
+        }    
     })
     .catch((err)=>console.log(err))
 }
+
 
 //signup (with car) 
 document.getElementById('signUp2').addEventListener('submit', signupWithCar);
@@ -63,6 +61,7 @@ function signupWithCar(event){
     let confirmPassword = document.getElementById('confirmPassword2').value;
 
     let error = document.getElementById('error');
+    let success = document.getElementById('message');
     let status = '';
     
     fetch('http://127.0.0.1:5000/api/v2/auth/signup', {
@@ -83,21 +82,17 @@ function signupWithCar(event){
     }).then((res) => {
         status = res.status;
         return res.json();
-    })
-    
+    })    
     .then((data) => {
         if (status >= 400){
             error.style.display='block';
-            document.getElementById('error').innerHTML = data["error"];
-            
+            document.getElementById('error').innerHTML = data["error"];       
         }
         if (status == 201 ){
             window.location = 'index.html'
-            success.style.display= 'block'
-            document.getElementById('message').innerHTML = data['message']
-            
+            success.style.display= 'block';
+            document.getElementById('message').innerHTML = data['message'];
         }
-        
     })
     .catch((err)=>console.log(err))
 }

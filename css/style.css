@@ -183,7 +183,7 @@ nav ul li a:hover{
     from{width:0%; border:none;} 
     to{width:100%;border:none;}
 }
-.form .login-form #success {
+.form #message {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #15aa3a;
     background: #edfff2;
@@ -194,13 +194,12 @@ nav ul li a:hover{
     padding-bottom: 12px;
     margin-bottom:18px;
     display: none; 
-    animation-name:errorpopup;    
-    animation-duration: 0.5s;
-    
+    animation-name:success;    
+    animation-duration: 2s; 
 }
-@keyframes errorpopup{
-    from{width:0%; border:none;} 
-    to{width:100%;border:none;}
+@keyframes success{
+    from{opacity: 0} 
+    to{opacity: 1;}
 }
 
 .details-form{
