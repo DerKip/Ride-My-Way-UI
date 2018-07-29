@@ -137,7 +137,7 @@ function loginUser(event){
             //store access_token to web local storage
             window.localStorage.setItem('token', data.token);
             //redirect user to  all ride offers available
-            // window.location = 'all_ride_offers.html'; 
+            window.location.href = 'all_ride_offers.html'; 
         }    
     })
     .catch((err)=>console.log(err))
