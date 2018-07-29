@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Satisfy" rel="stylesheet">
+    <title>Ride My Way</title>
+
+</head>
+<body>
+    <header>
+    <a href="index.html" class="header-brand"><span>Ride</span>MyWay</a>
+    
+    </header>
+
+    <main>
+        <section class="index-banner">
+        <p>Welcome to RideMyWay! A <b>carpooling </b>app <br> that provides drivers 
+            with the ability to create ride offers and passengers to join in.
+        </p>
+        <p><b>Sign up</b> to proceed</b> 
+        </p>
+            <img src="img/car.png" alt="ride my way!">
+            <div class="vl"></div>  <!-- vertical line hidden on small&medium display -->
+        </section>
+        <section class="container-1">
+
+            <div class="form">
+                    <div id="error"></div>
+                    
+                    <div class="option-button-container">
+                        <p class="message">Do you own a car</p>
+                            <button id="Btn1">Nope</button>
+                            <button id="Btn2">Yes</button>
+                        
+                    </div>
+                        
+                <form id="signUp1" class="register-form">
+                    
+                    <input type="text" placeholder="Username" id="username" required>
+                    <input type="text" placeholder="Email" required id="email">
+                    <input type="text" placeholder="Phone Number"required id="contacts">
+                    <input type="password" placeholder="Password"required id="password">
+                    <input type="password" placeholder="Confirm Password" id="confirmPassword"required>
+                    <button>Sign up</button>
+                </form>
+
+            
+                <form id="signUp2" class="driver-form">
+                    <input type="text" placeholder="Username" required id="username2">
+                    <input type="text" placeholder="Email" required id="email2">
+                    <input type="text" placeholder="Phone Number"required id="contacts2">
+                    <input type="text" placeholder="Car Model" required id="car_model">
+                    <input type="text" placeholder="Car RegNo" required id="car_regno"> 
+                    <input type="password" placeholder="Password" required id="password2">
+                    <input type="password" placeholder="Confirm Password" required id="confirmPassword2">
+                    <button>Sign up</button>
+                </form>
+                <div id="message"> </div>
+                <form class="login-form">
+                    
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button  formaction="offers_user.html">Login</button> <!-- temporary link to ride offer pages -->
+                    <p class="message">Not Registered?  <a href="#">Signup</a></p>
+                </form>
+                <script src="js/main.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                        $('.message a').click(function(){
+                        $('.driver-form').hide();
+                        $('.register-form').hide();
+                        $('.login-form').hide();
+                        $('.option-button-container').animate({height:"toggle",opacity:"toggle"},"slow");
+                        });
+
+                        $('.option-button-container #Btn1').click(function(){
+                            $('.driver-form').hide();
+                            $('.register-form').hide();
+                            $('.option-button-container').hide();
+                            $('.login-form').hide();
+                            $('.register-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                            });
+
+                            $('.option-button-container #Btn2').click(function(){
+                                $('.driver-form').hide();
+                                $('.register-form').hide();
+                                $('.option-button-container').hide();
+                                $('.login-form').hide();
+                                $('.driver-form').animate({height:"toggle",opacity:"toggle"},"slow");
+                                });
+
+                    </script>
+        <script src="js/auth.js"></script>
+        </div>
+    </section>
+    </main>
+</body>
+</html>
