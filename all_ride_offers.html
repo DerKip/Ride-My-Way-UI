@@ -46,12 +46,14 @@
 
                 <div class="modal-body">
                     <center>
-                            <form id="createRide" class="ride-offer-form">
-                                    <input type="text" placeholder="Destination" id="destination"reqired><br>
-                                    <input type="text" placeholder="My Loaction" id="myLocation" required><br>
-                                    <input type="text" placeholder="Departure Time" id="departureTime" require><br>
+                            <form class="ride-offer-form" id="createRide">
+                                <div id="error"></div>
+                                <div id="message"></div>
+                                    <input type="text" placeholder="Destination" id="destination" ><br>
+                                    <input type="text" placeholder="My Loaction" id="myLocation" ><br>
+                                    <input type="text" placeholder="Departure Time" id="departureTime"><br>
                                     <input type="text" placeholder="Price"id="price"><br>
-                                    <button>Create</button>
+                                    <button>Create Offer</button>
                             </form> 
                     </center>
                          
@@ -132,5 +134,6 @@
         </table>
     </main>
     <script src="js/main.js"></script>
+    <script src="js/rides.js"></script>
 </body>
 </html>
