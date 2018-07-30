@@ -12,11 +12,6 @@ function createRideOffer(event){
     let error = document.getElementById('error');
     let success = document.getElementById('message');
     let status = '';
-
-    if(window.localStorage.getItem('token') == ''){
-        //redirect user to login page if he/she is not logged in
-        window.location.href('index.html');
-        }
     
     fetch('http://127.0.0.1:5000/api/v2/users/rides', { 
         method: 'POST',
@@ -46,7 +41,8 @@ function createRideOffer(event){
         }
         if (status == 201 ){
             success.style.display= 'block';
-            document.getElementById('message').innerHTML = data['message'];   
+            document.getElementById('message').innerHTML = data['message'];  
+            window.location = 'all_ride_offers.html'; 
         }    
     })
     .catch((err)=>console.log(err))
