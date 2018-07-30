@@ -519,6 +519,37 @@ tr:nth-of-type(odd){
     width: 78%;
     padding: 15px;
 }
+.modal-body center .ride-offer-form #error {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #d32f2f;
+    width: 70%;
+    padding: 21px;
+    font-size: 12px;
+    background: #ffeaea;
+    border: 1px solid #ff4242; 
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom:18px;
+    display: none; 
+    animation-name:sucess;    
+    animation-duration: 0.5s;
+}
+.modal-body center .ride-offer-form #message {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #15aa3a;
+    width: 70%;
+    background: #edfff2;
+    padding: 21px;
+    font-size: 12px;
+    border: 1px solid #9dfcb5; 
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom:18px;
+    display: none; 
+    animation-name:success;    
+    animation-duration: 1.8s; 
+}
+
 /* -----modal ride_offer_form */
 
 @media only screen and (max-width:800px){
