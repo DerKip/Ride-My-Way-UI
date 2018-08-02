@@ -142,10 +142,11 @@ if (location.href.match(/view_offer/)){
         <p><strong>Car :</strong>${window.localStorage.getItem('car')}</p>
         <p><strong>Car NoPlate :</strong>${window.localStorage.getItem('car_plate')}</p>
         <p><strong>Contact :</strong>${window.localStorage.getItem('contact')}</p><br>
-        <button onclick = "location.href='tell:${window.localStorage.getItem('contact')}'"> Call</button>&nbsp; 
+        <button formaction="tel:'${window.localStorage.getItem('contact')}'"> Call</button>&nbsp; 
         <button onclick="">Join Ride</button> 
         `;
-    console.log(output);
+        console.log(output);
+
     document.getElementById('RideDetails').innerHTML = output;
 }
  
