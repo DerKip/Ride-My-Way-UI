@@ -30,7 +30,7 @@
     </div>
     <ul>
         <li><a href="rides_response_driver.html">Notifications</a></li>
-        <li><a href="offers_driver.html">Availiable Rides</a></li>
+        <li><a href="all_ride_offers.html">Availiable Rides</a></li>
         <li><a href="requests.html">Requests</a></li>
         <li><a href="rides_given.html">Rides Given</a></li>
         <li><a href="rides_taken_driver.html">Rides taken</a></li>
@@ -46,11 +46,14 @@
 
                 <div class="modal-body">
                     <center>
-                            <form action="" class="ride-offer-form">
-                                    <input type="text" placeholder="Destination"><br>
-                                    <input type="text" placeholder="My Loaction"><br>
-                                    <input type="text" placeholder="Departure Time"><br>
-                                    <button >Create</button>
+                            <form class="ride-offer-form" id="createRide">
+                                <div id="error"></div>
+                                <div id="message"></div>
+                                    <input type="text" placeholder="Destination" id="destination" ><br>
+                                    <input type="text" placeholder="My Loaction" id="myLocation" ><br>
+                                    <input type="text" placeholder="Departure Time" id="departureTime"><br>
+                                    <input type="text" placeholder="Price"id="price"><br>
+                                    <button>Create Offer</button>
                             </form> 
                     </center>
                          
@@ -70,15 +73,15 @@
                         <center>
                             <img src="img/profile.jpg" width=150 id=profpic alt="">
                         </center>
-                        <div class="content">
-                                <p><strong>Driver :</strong>Jason Statham</p>       
+                        <div  id ="RideDetails" class="content" >
+                                <!-- <p><strong>Driver :</strong>Jason Statham</p>       
                                 <p><strong>From :</strong>Nairobi</p>
                                 <p><strong>To :</strong>Limuru</p>
                                 <p><strong>Time :</strong>9:30am</p>
                                 <p><strong>Car :</strong>Audi</p>
                                 <p><strong>Car NoPlate :</strong>KCK 006Y</p>
                                 <p><strong>Contact :</strong>KCK 006Y</p><br>
-                                <button>Call</button>  &nbsp;  <button>Join Ride</button> 
+                                <button>Call</button>  &nbsp;  <button>Join Ride</button>  -->
                         </div>
                         
                 </form>
@@ -87,5 +90,6 @@
     </main>
 
     <script src="js/main.js"></script>
+    <script src="js/rides.js"></script>
 </body>
 </html>
