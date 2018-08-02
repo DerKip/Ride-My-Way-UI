@@ -124,6 +124,7 @@ function viewRide(ride){
                 window.localStorage.setItem('car', data.car.model);
                 window.localStorage.setItem('car_plate', data.car.plate);
                 window.localStorage.setItem('contact', data.contact);
+                window.localStorage.setItem('ride',data.ride.id);
             //redirect user to view offer page
             window.location.replace('view_offer.html');
             }
@@ -143,12 +144,37 @@ if (location.href.match(/view_offer/)){
         <p><strong>Car NoPlate :</strong>${window.localStorage.getItem('car_plate')}</p>
         <p><strong>Contact :</strong>${window.localStorage.getItem('contact')}</p><br>
         <button formaction="tel:'${window.localStorage.getItem('contact')}'"> Call</button>&nbsp; 
-        <button onclick="">Join Ride</button> 
+        <button onclick="sendRequest(${window.localStorage.getItem('ride')})">Join Ride</button> 
         `;
-        console.log(output);
-
     document.getElementById('RideDetails').innerHTML = output;
 }
  
+//send request to ride offer
+function sendRequest(ride){
+    fetch(`http://127.0.0.1:5000/api/v2/users/rides/${ride}/request`,{
+        method:'POST',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res)=>{
+        status = res.status;
+        return res.json();
+    })
+    .then((data =>{
+        if (status == 401){
+            alert(data['msg'] + '. Click Ok to login');
+            window.location.replace('index.html');
+        }
+        if(status == 405){
+            alert(data['error']);
+        }
+        if (status == 200){
+            alert("Successfully sent a request to join ride ");
+        }
+
+    }));
+}
 
    
