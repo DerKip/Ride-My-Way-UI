@@ -13,7 +13,7 @@ function createRideOffer(event){
     let success = document.getElementById('message');
     let status = '';
     
-    fetch('https://ride-my-way-2.herokuapp.com/api/v2/users/rides', { 
+    fetch('http://127.0.0.1:5000/api/v2/users/rides', { 
         method: 'POST',
         headers: {
             'Content-type':'application/json',
@@ -48,3 +48,45 @@ function createRideOffer(event){
     .catch((err)=>console.log(err))
 }
 
+// fetch all ride offers
+
+// Checks whether the href contains users/ride (regex way)
+
+if (location.href.match(/all_ride_offers/)){
+    fetch('http://127.0.0.1:5000/api/v2/users/rides',{
+        method:'GET',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res) => {
+    status = res.status;
+    return res.json();
+    })  
+    .then((data =>{
+        if (status == 401){
+            alert(data['msg'] + '. Click Ok to login');
+            window.location.replace('index.html');
+        }
+        if (status == 200){
+            let output = '';
+            data['rides'].forEach(ride => {
+                output +=`
+
+                    <tr>
+                        <td tableHeadData="id">${ride['id']}</td>
+                        <td tableHeadData="Driver">${ride['created_by']}</td>
+                        <td tableHeadData="From">${ride['from_location']}</td> 
+                        <td tableHeadData="To:">${ride['destination']}</td>
+                        <td tableHeadData="Departure time">${ride['departure_time']}</td>    
+                        <td tableHeadData="Date">${ride['date_created']}</td>               
+                        <td><button><a href="view_offer_driver.html">View</a></button></td>
+                    </tr>
+                ` 
+                document.getElementById('ride_offers').innerHTML = output;
+            });
+        }
+        
+    }))
+}
