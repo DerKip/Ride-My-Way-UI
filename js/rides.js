@@ -81,13 +81,13 @@ if (location.href.match(/all_ride_offers/)){
                 output +=`
 
                     <tr>
-                        <td tableHeadData="id">${ride['id']}</td>
-                        <td tableHeadData="Driver">${ride['created_by']}</td>
-                        <td tableHeadData="From">${ride['from_location']}</td> 
-                        <td tableHeadData="To:">${ride['destination']}</td>
-                        <td tableHeadData="Departure time">${ride['departure_time']}</td>    
-                        <td tableHeadData="Date">${ride['date_created'].slice(0, 17)}</td>               
-                        <td><button><a href="view_offer_driver.html">View</a></button></td>
+                        <td tableHeadData="id">${ride.id}</td>
+                        <td tableHeadData="Driver">${ride.created_by}</td>
+                        <td tableHeadData="From">${ride.from_location}</td> 
+                        <td tableHeadData="To:">${ride.destination}</td>
+                        <td tableHeadData="Departure time">${ride.departure_time}</td>    
+                        <td tableHeadData="Date">${ride.date_created.slice(0, 17)}</td>          
+                        <td><button onclick="viewRide(${ride.id})">View</button></td>
                     </tr>
                 ` 
                 document.getElementById('ride_offers').innerHTML = output;
@@ -96,3 +96,58 @@ if (location.href.match(/all_ride_offers/)){
         
     }))
 }
+
+//view ride offer details   
+function viewRide(ride){
+    fetch(`http://127.0.0.1:5000/api/v2/users/rides/${ride}`,{
+        method:'GET',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res) => {
+        status = res.status;
+        return res.json();
+        })  
+        .then((data =>{
+            if (status == 401){
+                alert(data['msg'] + '. Click Ok to login');
+                window.location.replace('index.html');
+            }
+            if (status == 200){
+                //store ride details on local storage on success
+                window.localStorage.setItem('creator', data.ride.created_by);
+                window.localStorage.setItem('from_location', data.ride.from_location);
+                window.localStorage.setItem('destination', data.ride.destination);
+                window.localStorage.setItem('departure_time', data.ride.departure_time);
+                window.localStorage.setItem('car', data.car.model);
+                window.localStorage.setItem('car_plate', data.car.plate);
+                window.localStorage.setItem('contact', data.contact);
+            //redirect user to view offer page
+            window.location.replace('view_offer.html');
+            }
+    
+        }));
+    }
+
+//displays ride details from local storage if url has 'view_offer'
+if (location.href.match(/view_offer/)){
+    let output ='';
+    output+=`
+        <p><strong>Driver :</strong>${window.localStorage.getItem('creator')}</p>
+        <p><strong>From :</strong>${window.localStorage.getItem('from_location')}</p>
+        <p><strong>To :</strong>${window.localStorage.getItem('destination')}</p>
+        <p><strong>Time :</strong>${window.localStorage.getItem('departure_time')}</p>
+        <p><strong>Car :</strong>${window.localStorage.getItem('car')}</p>
+        <p><strong>Car NoPlate :</strong>${window.localStorage.getItem('car_plate')}</p>
+        <p><strong>Contact :</strong>${window.localStorage.getItem('contact')}</p><br>
+        <button onclick = "location.href='tell:${window.localStorage.getItem('contact')}'"> Call</button>&nbsp; 
+        <button onclick="">Join Ride</button> 
+        `;
+    console.log(output);
+    document.getElementById('RideDetails').innerHTML = output;
+}
+ 
+
+   
