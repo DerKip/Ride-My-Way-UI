@@ -69,6 +69,12 @@ if (location.href.match(/all_ride_offers/)){
             alert(data['msg'] + '. Click Ok to login');
             window.location.replace('index.html');
         }
+        if (data['rides'] == ''){
+            table = document.getElementById('ResponsiveTable');
+            table.style.display = 'none';
+            alert('There are no ride offers currently available');
+    
+        }
         if (status == 200){
             let output = '';
             data['rides'].forEach(ride => {
@@ -80,7 +86,7 @@ if (location.href.match(/all_ride_offers/)){
                         <td tableHeadData="From">${ride['from_location']}</td> 
                         <td tableHeadData="To:">${ride['destination']}</td>
                         <td tableHeadData="Departure time">${ride['departure_time']}</td>    
-                        <td tableHeadData="Date">${ride['date_created']}</td>               
+                        <td tableHeadData="Date">${ride['date_created'].slice(0, 17)}</td>               
                         <td><button><a href="view_offer_driver.html">View</a></button></td>
                     </tr>
                 ` 
