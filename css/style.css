@@ -334,7 +334,7 @@ button:hover{
     font-family:Raleway;
 
 }
-tr:nth-of-type(odd){
+tr:nth-of-type(even){
     background-color: #f2f2f2;
 }
 #ResponsiveTable td{
