@@ -128,7 +128,6 @@ function viewRide(ride){
             //redirect user to view offer page
             window.location.replace('view_offer.html');
             }
-    
         }));
     }
 
@@ -173,4 +172,51 @@ function sendRequest(ride){
     }));
 }
 
-   
+//user's requests
+if (location.href.match(/my_requests/)){
+    fetch("http://127.0.0.1:5000/api/v2/users/user/requests",{
+        method:'GET',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res) => {
+        status = res.status;
+        return res.json();
+        })  
+        .then((data =>{
+            if (status == 404){
+                // alert(data['message']);
+                let output = '';
+                output +=`
+                    <centre><p style="padding:50px;color:rgb(56, 56, 56,0.5); font-size:1.5em;">${data['message']}</p></centre>
+                `;
+                document.getElementById('ResponsiveTable').innerHTML = output;
+                title = document.getElementById('TableTitle');
+                title.style.display= "None";
+            }
+            if (status == 200){
+                let output = '';
+                var i=0;
+                data['requests'].forEach (request => {
+                    i++;
+                    output +=`
+                    <tr>
+                        <td>${i}</td>
+                        <td>${request.created_by}</td>
+                        <td>${request.from_location}</td> 
+                        <td>${request.destination}</td>
+                        <td>${request.departure_time}</td>
+                        <td>${request.date_created}</td>
+                        <td style="color:green;"id="">${request.status}</td>
+                        <td><button onclick="" style="background-color:#d32f2f;">Cancel</button></td>
+                        
+                    </tr>
+                `;
+                document.getElementById('myRequests').innerHTML = output;
+                }
+            )}  
+        }
+    ))
+}
