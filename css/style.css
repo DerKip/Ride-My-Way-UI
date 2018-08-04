@@ -84,7 +84,7 @@ nav ul li a{
 nav ul li a:hover{
     box-shadow: 0 2px 0px #f2f2f2;
     padding-bottom: 5px;  
-}
+} 
 .active{
     box-shadow: 0 2px 0px #f2f2f2;
     padding-bottom: 5px;
@@ -163,6 +163,24 @@ nav ul li a:hover{
     box-sizing: border-box;
     font-size: 14px;
 }
+.field_decription{
+    color: #1A7770;
+    font-size:13px;
+    padding-bottom:6px;
+    text-align: left;
+    width: 360px;
+    animation-name:success;    
+    animation-duration: 0.75s; 
+    display:none;
+}
+/* contact description on display always */
+.field_decription_dials{
+    color: #1A7770;
+    font-size:13px;
+    padding-bottom:6px;
+    text-align: left;
+}
+
 
 .form #error {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -175,13 +193,14 @@ nav ul li a:hover{
     padding-bottom: 12px;
     margin-bottom:18px;
     display: none; 
-    animation-name:errorpopup;    
-    animation-duration: 0.5s;
+    animation-name:errorpopup;
+    animation-iteration-count:2; 
+    animation-duration: 0.3s;
     
 }
 @keyframes errorpopup{
-    from{width:0%; border:none;} 
-    to{width:100%;border:none;}
+    0%{margin-left:-20px;margin-right:20px;};
+    10%{margin-left:20px;margin-right:-20px;}; 
 }
 .form #message {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
