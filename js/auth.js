@@ -150,7 +150,12 @@ function loginUser(event){
 }
 //redirect user to ride offers if user already has an access token
 if (location.href.match(/index/)){
-    if (window.localStorage.getItem('ride') != ''){
+    if (localStorage.getItem('token') != null){
         window.location.href = 'all_ride_offers.html';
     }   
+}
+//logout 
+function logout(){
+    localStorage.removeItem('token');
+    window.location.href = 'index.html';
 }
