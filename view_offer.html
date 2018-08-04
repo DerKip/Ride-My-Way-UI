@@ -49,9 +49,13 @@
                             <form class="ride-offer-form" id="createRide">
                                 <div id="error"></div>
                                 <div id="message"></div>
-                                    <input type="text" placeholder="Destination" id="destination" ><br>
+                                    <p class ="field_decription " style="padding-left:25px">Destination :</p>
+                                    <input type="text" style="padding-left:25px" onclick="displayField()" placeholder="Destination" id="destination" ><br>
+                                    <p class ="field_decription"  style="padding-left:25px">Starting Point :</p>
                                     <input type="text" placeholder="My Loaction" id="myLocation" ><br>
-                                    <input type="text" placeholder="Departure Time" id="departureTime"><br>
+                                    <p class ="field_decription"  style="padding-left:25px">Departure Time :</p>
+                                    <input type="time" placeholder="Departure Time" id="departureTime"><br>
+                                    <p class ="field_decription"  style="padding-left:25px">Price :</p>
                                     <input type="text" placeholder="Price"id="price"><br>
                                     <button>Create Offer</button>
                             </form> 

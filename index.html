@@ -40,28 +40,42 @@
                         
                 <form id="signUp1" class="register-form">
                     
-                    <input type="text" placeholder="Username" id="username" required>
-                    <input type="text" placeholder="Email" required id="email">
-                    <input type="text" placeholder="Phone Number"required id="contacts">
-                    <input type="password" placeholder="Password"required id="password">
+                    <p class ="field_decription">Username:</p>
+                    <input type="text" onclick="displayField()" placeholder="Username" id="username" required>
+                    <p class ="field_decription">Email :</p>
+                    <input type="email" placeholder="your_email@domain.com" size="30" id="email" required>
+                    <p class ="field_decription_dials">Phone Number :</p>
+                    <input type="tel" placeholder="123-4567-8901"required minlength="9" maxlength="14" id="contacts" required>
+                    <p class ="field_decription">Password :</p>
+                    <input type="password"  placeholder="Password"required id="password">
+                    <p class ="field_decription">Confirm Password :</p>
                     <input type="password" placeholder="Confirm Password" id="confirmPassword"required>
                     <button>Sign up</button>
                 </form>
 
             
                 <form id="signUp2" class="driver-form">
-                    <input type="text" placeholder="Username" required id="username2">
-                    <input type="text" placeholder="Email" required id="email2">
-                    <input type="text" placeholder="Phone Number"required id="contacts2">
+                    <p class ="field_decription">Username :</p>
+                    <input type="text" onclick="displayField()" placeholder="Username" required id="username2">
+                    <p class ="field_decription">Email :</p>
+                    <input type="email" placeholder="your_email@domain.com" size="30" id="email2" required>
+                    <p class ="field_decription_dials">Phone Number :</p>
+                    <input type="tel" placeholder="123-4567-8901"required minlength="9" maxlength="14" id="contacts2"required>
+                    <p class ="field_decription">Car Model :</p>
                     <input type="text" placeholder="Car Model" required id="car_model">
+                    <p class ="field_decription">Car Number Plate :</p>
                     <input type="text" placeholder="Car RegNo" required id="car_regno"> 
+                    <p class ="field_decription">Password :</p>
                     <input type="password" placeholder="Password" required id="password2">
+                    <p class ="field_decription">Confirm Password :</p>
                     <input type="password" placeholder="Confirm Password" required id="confirmPassword2">
                     <button>Sign up</button>
                 </form>
                 <div id="message"> </div>
                 <form id ="login" class="login-form">
-                    <input type="text" placeholder="Username" required id="visitor">
+                    <p class ="field_decription">Username :</p>
+                    <input type="text" onclick="displayField()" placeholder="Username" required id="visitor">
+                    <p class ="field_decription">Password :</p>
                     <input type="password" placeholder="Password" required id="password_login">
                     <button>Login</button> 
                     <p class="message">Not Registered?  <a href="#">Signup</a></p>
