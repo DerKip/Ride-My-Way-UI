@@ -46,12 +46,19 @@
 
                 <div class="modal-body">
                     <center>
-                            <form action="" class="ride-offer-form">
-                                    <input type="text" placeholder="Destination"><br>
-                                    <input type="text" placeholder="My Loaction"><br>
-                                    <input type="text" placeholder="Departure Time"><br>
-                                    <button >Create</button>
-                            </form> 
+                        <form class="ride-offer-form" id="createRide">
+                            <div id="error"></div>
+                            <div id="message"></div>
+                                <p class ="field_decription " style="padding-left:25px">Destination :</p>
+                                <input type="text" style="padding-left:25px" onclick="displayField()" placeholder="Destination" id="destination" ><br>
+                                <p class ="field_decription"  style="padding-left:25px">Starting Point :</p>
+                                <input type="text" placeholder="My Loaction" id="myLocation" ><br>
+                                <p class ="field_decription"  style="padding-left:25px">Departure Time :</p>
+                                <input type="time" placeholder="Departure Time" id="departureTime"><br>
+                                <p class ="field_decription"  style="padding-left:25px">Price :</p>
+                                <input type="text" placeholder="Price"id="price"><br>
+                            <button>Create Offer</button>
+                        </form> 
                     </center>
                          
                 </div>
@@ -69,48 +76,18 @@
         
         <table id="ResponsiveTable">
                 
-            <h3 id="TableTitle">My requests</h3> 
-            <tbody style="margin-right:90px;" >
-                    <tr id="HeadRow">
-                            <td><small>ID</small></td>
-                            <td>Driver</td>
-                            <td>From:</td> 
-                            <td>To:</td>
-                            <td>Time</td>
-                            <td>Date</td> 
-                            <td>Response</td>                 
-                    </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Jason Statham</td>
-                            <td>Nairobi</td> 
-                            <td>Limuru</td>
-                            <td>10:30</td>
-                            <td>13-Jun-2018</td>
-                            <td style="color:green;"id="">Accepted</td>
-                            <!-- <td style="color: #d32f2f;"id="">---</td>                 -->
-                            
-                        </tr>
-                    <tr>
-                            <td>2</td>
-                            <td>Peter Oswago</td>
-                            <td>Westlands</td> 
-                            <td>Umoja</td>
-                            <td>10:30</td>
-                            <td>12-Jan-2018</td> 
-                            <!-- <td style="color:green;"id="">---</td> -->
-                            <td style="color: #d32f2f;"id="">Rejected</td> 
-                    </tr>                              
-                    <tr>
-                        <td>2</td>
-                        <td>Peter Oswago</td>
-                        <td>Westlands</td> 
-                        <td>Umoja</td>
-                        <td>10:30</td>
-                        <td>12-Jan-2018</td> 
-                        <td style="color:green;"id="">----------</td>
-                </tr>                              
-
+            <h3 id="TableTitle">My requests</h3>
+            <tr id="HeadRow">
+                    <td> <!--No. --></td>
+                    <td>Driver</td>
+                    <td>From:</td> 
+                    <td>To:</td>
+                    <td>Departure time</td>
+                    <td>Date&amp;Time Created</td> 
+                    <td>Response</td> 
+                    <td> <!--cancel --></td>                  
+            </tr> 
+            <tbody id ="myRequests" style="margin-right:90px;">
             </tbody>
             
         </table>
@@ -118,5 +95,6 @@
         
     </main>
     <script src="js/main.js"></script>
+    <script src="js/rides.js"></script>
 </body>
 </html>
