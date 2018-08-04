@@ -14,7 +14,7 @@ function signupWithoutCar(event){
     let success = document.getElementById('message');
     let status = '';
     
-    fetch('https://ride-my-way-2.herokuapp.com/api/v2/auth/signup', {
+    fetch('http://127.0.0.1:5000/api/v2/auth/signup', {
         method: 'POST',
         headers: {
             'Content-type':'application/json'
@@ -33,11 +33,13 @@ function signupWithoutCar(event){
     })  
     .then((data) => {
         if (status >= 400){
+            error.style.display='none';
             error.style.display='block';
             document.getElementById('error').innerHTML = data["error"];     
         }
         if (status == 201 ){
             window.location = 'index.html';
+            error.style.display='none';
             success.style.display= 'block';
             document.getElementById('message').innerHTML = data['message'];   
         }    
@@ -64,7 +66,7 @@ function signupWithCar(event){
     let success = document.getElementById('message');
     let status = '';
     
-    fetch('https://ride-my-way-2.herokuapp.com/api/v2/auth/signup', { 
+    fetch('http://127.0.0.1:5000/api/v2/auth/signup', { 
         method: 'POST',
         headers: {
             'Content-type':'application/json'
@@ -85,11 +87,13 @@ function signupWithCar(event){
     })    
     .then((data) => {
         if (status >= 400){
+            error.style.display='none';
             error.style.display='block';
             document.getElementById('error').innerHTML = data["error"];       
         }
         if (status == 201 ){
             window.location = 'index.html'
+            error.style.display='none';
             success.style.display= 'block';
             document.getElementById('message').innerHTML = data['message'];
         }
@@ -112,7 +116,7 @@ function loginUser(event){
     let success = document.getElementById('message');
     let status = '';
     
-    fetch('https://ride-my-way-2.herokuapp.com/api/v2/auth/login', {
+    fetch('http://127.0.0.1:5000/api/v2/auth/login', {
         method: 'POST',
         headers: {
             'Content-type':'application/json'
@@ -128,10 +132,12 @@ function loginUser(event){
     })  
     .then((data) => {
         if (status >= 400){
+            error.style.display='none';
             error.style.display='block';
             document.getElementById('error').innerHTML = data["error"];     
         }
         if (status == 200 ){
+            error.style.display='none';
             success.style.display= 'block';
             document.getElementById('message').innerHTML = data['message'];
             //store access_token to web local storage
@@ -141,4 +147,10 @@ function loginUser(event){
         }    
     })
     .catch((err)=>console.log(err))
+}
+//redirect user to ride offers if user already has an access token
+if (location.href.match(/index/)){
+    if (window.localStorage.getItem('ride') != ''){
+        window.location.href = 'all_ride_offers.html';
+    }   
 }

@@ -32,3 +32,11 @@ function clickOutside(e){
         modal.style.display='none';
     }   
 }
+//function to display field entry description
+function displayField(p) {
+    let description = document.querySelectorAll('.field_decription');
+    for(var i=0;i<description.length;i++){
+        description[i].style.display="block";
+    }
+
+}

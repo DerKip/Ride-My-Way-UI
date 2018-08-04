@@ -170,10 +170,6 @@ function sendRequest(ride){
         if(status == 405){
             alert(data['error']);
         }
-        if (status == 200){
-            alert("Successfully sent a request to join ride ");
-        }
-
     }));
 }
 
