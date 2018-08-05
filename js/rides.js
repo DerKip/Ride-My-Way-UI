@@ -294,7 +294,7 @@ function viewRequest(ride){
             window.localStorage.setItem('date_created', data.ride.date_created.slice(0, 17));
             window.localStorage.setItem('departure_time', data.ride.departure_time);
             window.localStorage.setItem('departure_time', data.ride.departure_time);
-            //redirect user to requests
+            //redirect user to requests 
             window.location.href = 'requests.html';
             
         }
