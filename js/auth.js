@@ -142,6 +142,7 @@ function loginUser(event){
             document.getElementById('message').innerHTML = data['message'];
             //store access_token to web local storage
             window.localStorage.setItem('token', data.token);
+            window.localStorage.setItem('username', username);
             //redirect user to  all ride offers available
             window.location.href = 'all_ride_offers.html'; 
         }    
