@@ -279,21 +279,8 @@ function viewRequest(ride){
             alert(data.message);
         }
         if (status == 200){
-            let contact = '';
-            let name = '';
-            data.response.forEach(response => {
-            contact = response.contact;
-            name = response.username;
-                }           
-            );
-            //store ride details on local storage on success
-            window.localStorage.setItem('contact', contact);
-            window.localStorage.setItem('passenger', name);
-            window.localStorage.setItem('from', data.ride.from_location);
-            window.localStorage.setItem('to', data.ride.destination);
-            window.localStorage.setItem('date_created', data.ride.date_created.slice(0, 17));
-            window.localStorage.setItem('departure_time', data.ride.departure_time);
-            window.localStorage.setItem('departure_time', data.ride.departure_time);
+            //store ride id
+            window.localStorage.setItem('ride_requests',ride);
             //redirect user to requests 
             window.location.href = 'requests.html';
             
