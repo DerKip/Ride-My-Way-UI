@@ -33,19 +33,20 @@ function createRideOffer(event){
     .then((data) => {
         if (status == 401){
             error.style.display='block';
-            document.getElementById('error').innerHTML = data["msg"];     
+            document.getElementById('error').innerHTML = data.msg;     
         }
         if (status == 400 || status >401){
             error.style.display='block';
-            document.getElementById('error').innerHTML = data["error"];     
+            document.getElementById('error').innerHTML = data.error;     
         }
         if (status == 201 ){
+            error.style.display='none';
             success.style.display= 'block';
-            document.getElementById('message').innerHTML = data['message'];  
+            document.getElementById('message').innerHTML = data.message;  
             window.location = 'all_ride_offers.html'; 
         }    
     })
-    .catch((err)=>console.log(err))
+    .catch((err)=>console.log(err));
 }
 
 // fetch all ride offers
@@ -126,7 +127,7 @@ function viewRide(ride){
                 window.localStorage.setItem('contact', data.contact);
                 window.localStorage.setItem('ride',data.ride.id);
             //redirect user to view offer page
-            window.location.replace('view_offer.html');
+            window.location.href = 'view_offer.html'; 
             }
         }));
     }
@@ -220,3 +221,83 @@ if (location.href.match(/my_requests/)){
         }
     ))
 }
+//user's ride offers
+if (location.href.match(/my_ride_offers/)){
+    fetch('http://127.0.0.1:5000/api/v2/users/rides',{
+        method:'GET',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res) => {
+    status = res.status;
+    return res.json();
+    })  
+    .then((data =>{
+        if (status == 200){
+            let user = localStorage.getItem('username');
+            let output = '';
+            var i = -1;
+            data.rides.forEach(ride => {
+                i++;
+                if (ride.created_by == user){
+                    output +=`
+                    <tr>
+                        <td>${i}</td>
+                        <td>${ride.from_location}</td>
+                        <td>${ride.destination}</td> 
+                        <td>${ride.departure_time}</td>
+                        <td><button onclick="viewRequest(${ride.id})">View Requests</button></td>
+                        <td><button onclick="" style="background-color:#9dabb4;">Update</button></td>
+                        <td><button onclick="" style="background-color:#d32f2f;">Remove</button></td>
+                    </tr>                   
+                ` ;
+                }
+            document.getElementById('ride_offers').innerHTML = output;
+            }           
+        );     
+      }   
+    }))
+}
+// view requests sent to a specific ride  
+function viewRequest(ride){
+    fetch(`http://127.0.0.1:5000/api/v2/users/rides/${ride}/requests`,{
+        method:'GET',
+        headers: {
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ window.localStorage.getItem('token')
+        }
+    })
+    .then((res) => {
+        status = res.status;
+        return res.json();
+        })  
+    .then((data =>{
+        
+        if (status == 404){
+            alert(data.message);
+        }
+        if (status == 200){
+            let contact = '';
+            let name = '';
+            data.response.forEach(response => {
+            contact = response.contact;
+            name = response.username;
+                }           
+            );
+            //store ride details on local storage on success
+            window.localStorage.setItem('contact', contact);
+            window.localStorage.setItem('passenger', name);
+            window.localStorage.setItem('from', data.ride.from_location);
+            window.localStorage.setItem('to', data.ride.destination);
+            window.localStorage.setItem('date_created', data.ride.date_created.slice(0, 17));
+            window.localStorage.setItem('departure_time', data.ride.departure_time);
+            window.localStorage.setItem('departure_time', data.ride.departure_time);
+            //redirect user to requests
+            window.location.href = 'requests.html';
+            
+        }
+        }));
+    }
+
