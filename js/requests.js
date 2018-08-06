@@ -20,16 +20,82 @@ if (location.href.match(/requests/)){
             data.response.forEach(res => {
                 i++;
                 output +=`
-                    <tr>
+                <tr>
                     <td>${i}</td>
                     <td>${res.username}</td>
                     <td><a href="tel:${res.contact}">${res.contact}</a></td>
-                    <td><button onclick="acceptRequest(${res.id})>Accept</button></td>
-                    <td><button onclick="rejectRequest(${res.id})style="background: #d32f2f;"id="">Reject</button></td>                
+
+                    <td><input onclick="this.value='Accepted'" type="button" value="Accept"
+                        style="background:#1c7f7f;color: #fff;
+                            padding:10px;
+                            border-radius: 4px;
+                            border: 0;
+                            cursor: pointer;">
+                    </td>
+
+                    <td><button onclick="rejectRequest(${res.ride_id},${res.id})" style="background: #d32f2f;" >Reject</button></td>                
                 </tr> 
-                ` 
+                ` ;
             document.getElementById('Requests').innerHTML = output;
             });
         }   
     }))
 }
+
+//Accept Request
+function acceptRequest(ride,request){  
+    let state = "Accepted";
+    fetch(`http://127.0.0.1:5000/api/v2/users/rides/${ride}/requests/${request}`,{
+            method: 'PUT',
+            headers: {
+                'Content-type':'application/json',
+                'Authorization':'Bearer '+ window.localStorage.getItem('token')
+            },
+            body:JSON.stringify(
+                {
+                   Response:state
+            })
+        })
+        .then((res) => {
+            status = res.status;
+            return res.json();
+        })  
+        .then((data) => {
+            if (status >= 400){
+                alert(data.error);   
+            }
+            if (status == 200 ){
+                alert('accepted');
+            }    
+        })
+        .catch((err)=>console.log(err));
+}    
+
+//Accept Request
+function rejectRequest(ride,request){  
+    let state = "Rejected";
+    fetch(`http://127.0.0.1:5000/api/v2/users/rides/${ride}/requests/${request}`,{
+            method: 'PUT',
+            headers: {
+                'Content-type':'application/json',
+                'Authorization':'Bearer '+ window.localStorage.getItem('token')
+            },
+            body:JSON.stringify(
+                {
+                   Response:state
+            })
+        })
+        .then((res) => {
+            status = res.status;
+            return res.json();
+        })  
+        .then((data) => {
+            if (status >= 400){
+                alert(data.error);   
+            }
+            if (status == 200 ){
+                alert('Rejected');
+            }    
+        })
+        .catch((err)=>console.log(err));
+}    
